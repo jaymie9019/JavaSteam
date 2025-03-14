@@ -72,23 +72,19 @@ public class SampleLoginWithProxy implements Runnable {
         LogManager.addListener(new DefaultLogListener());
 
         SampleLoginWithProxy client = new SampleLoginWithProxy(args[0], args[1]);
-        // if you use http proxy, you can only use websocket protocol to connection, you need to modify the configuration
+        // if you use http proxy, you can only use websocket protocol to connection, because ws is over http, you need to modify steamConfiguration
 
         Proxy proxy = new Proxy(Proxy.Type.SOCKS,
                 new InetSocketAddress("127.0.0.1", 7890));
 
 //        Proxy proxy = new Proxy(Proxy.Type.HTTP,
 //                new InetSocketAddress("127.0.0.1", 7890));
-
         client.setProxy(proxy);
         client.run();
-
-        Thread.sleep(1000000L);
     }
 
     @Override
     public void run() {
-
         // If any configuration needs to be set; such as connection protocol api key, etc., you can configure it like so.
         var configuration = SteamConfiguration.create(config -> {
             config.withProtocolTypes(ProtocolTypes.TCP)

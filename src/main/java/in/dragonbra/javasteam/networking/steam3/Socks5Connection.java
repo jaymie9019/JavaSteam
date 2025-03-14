@@ -13,7 +13,8 @@ import java.net.Socket;
 
 
 /**
- * @author cap_qin
+ * @author jaymie
+ * @since 2025-03-14
  */
 public class Socks5Connection extends Connection {
 
@@ -119,15 +120,8 @@ public class Socks5Connection extends Connection {
             try {
                 logger.debug(String.format("use proxy [%s:/%s] Connecting to %s...", proxy.type(), proxy.address(), currentEndPoint));
                 Socket underlying = new Socket(new Proxy(Proxy.Type.SOCKS, proxy.address()));
-                underlying.connect(endPoint,timeout);
+                underlying.connect(endPoint, timeout);
                 socket = underlying;
-//                socket = factory.createSocket(
-//                        underlying,
-//                        ((InetSocketAddress) (proxy.address())).getAddress().getHostAddress(),
-//                        ((InetSocketAddress) (proxy.address())).getPort(),
-//                        true);
-//                socket.connect(endPoint, timeout);
-
                 connectionCompleted(true);
             } catch (Exception e) {
                 logger.debug("Socket exception while completing connection request to " + currentEndPoint, e);

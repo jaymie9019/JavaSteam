@@ -65,12 +65,10 @@ public class SampleWebLogonNonce implements Runnable {
         LogManager.addListener(new DefaultLogListener());
 
         new SampleWebLogonNonce(args[0], args[1]).run();
-        Thread.sleep(1000000L);
     }
 
     @Override
     public void run() {
-
          // If any configuration needs to be set; such as connection protocol api key, etc., you can configure it like so.
          var configuration = SteamConfiguration.create(config -> config.withProtocolTypes(ProtocolTypes.TCP));
          // create our steamclient instance with custom configuration.

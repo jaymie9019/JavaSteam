@@ -49,7 +49,6 @@ class WebSocketConnection(private val proxy: Proxy? = null) :
 
     private var lastFrameTime = System.currentTimeMillis()
 
-
     override val coroutineContext: CoroutineContext = Dispatchers.IO + job
 
     override fun connect(endPoint: InetSocketAddress, timeout: Int) {
@@ -67,8 +66,7 @@ class WebSocketConnection(private val proxy: Proxy? = null) :
                         pingInterval = timeout.toDuration(DurationUnit.SECONDS)
                     }
 
-                    // 如果配置了代理，可以在这里使用
-                    // 注意：实际应用中可能需要根据 Ktor HttpClient 的代理配置方式进行调整
+                    // is proxy is not null, set it
                     if (proxy != null) {
                         engine {
                             proxy = this@WebSocketConnection.proxy

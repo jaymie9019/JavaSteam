@@ -128,6 +128,7 @@ dependencies {
 }
 
 /* Artifact publishing */
+/*
 nexusPublishing {
     repositories {
         sonatype {
@@ -138,7 +139,9 @@ nexusPublishing {
         }
     }
 }
+*/
 
+/*
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
@@ -176,3 +179,43 @@ publishing {
 signing {
     sign(publishing.publications["mavenJava"])
 }
+*/
+
+publishing {
+    publications {
+        // 保留原有的 mavenJava 发布配置
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+            artifact(javadocJar)
+            // 保持原有的 groupId (in.dragonbra)
+            groupId = "com.xingchao"
+            // artifactId 默认为项目名称
+            // 保持原有的版本 (1.6.1-SNAPSHOT)
+
+            pom {
+                name = "JavaSteam"
+                packaging = "jar"
+                description = "Java library to interact with Valve's Steam network."
+                url = "https://github.com/Longi94/JavaSteam"
+                inceptionYear = "2018"
+            }
+        }
+    }
+
+    repositories {
+        // 添加阿里云私有仓库
+        maven {
+            name = "aliyun"
+            val releasesRepoUrl = "https://packages.aliyun.com/60b0a98cb8301d20d58b514c/maven/2106878-release-1hzhlx"
+            val snapshotsRepoUrl = "https://packages.aliyun.com/60b0a98cb8301d20d58b514c/maven/2106878-snapshot-ajrzdr"
+
+            url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
+
+            credentials {
+                username = "5fa79bad2d5925c55b9e9dfe"
+                password = "lL)2GAz99k_2"
+            }
+        }
+    }
+}
+
