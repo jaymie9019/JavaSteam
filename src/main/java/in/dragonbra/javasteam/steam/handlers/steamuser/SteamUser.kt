@@ -29,7 +29,6 @@ import `in`.dragonbra.javasteam.steam.steamclient.callbacks.DisconnectedCallback
 import `in`.dragonbra.javasteam.types.SteamID
 import `in`.dragonbra.javasteam.util.HardwareUtils
 import `in`.dragonbra.javasteam.util.NetHelpers
-import org.apache.commons.lang3.StringUtils
 
 /**
  * This handler handles all user log on/log off related actions and callbacks.

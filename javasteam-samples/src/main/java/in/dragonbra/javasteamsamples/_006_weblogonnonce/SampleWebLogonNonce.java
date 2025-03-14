@@ -6,7 +6,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import in.dragonbra.javasteam.enums.EResult;
 import in.dragonbra.javasteam.networking.steam3.ProtocolTypes;
-import in.dragonbra.javasteam.steam.authentication.*;
 import in.dragonbra.javasteam.steam.handlers.steamuser.LogOnDetails;
 import in.dragonbra.javasteam.steam.handlers.steamuser.SteamUser;
 import in.dragonbra.javasteam.steam.handlers.steamuser.callback.LoggedOffCallback;
@@ -26,7 +25,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-import java.util.concurrent.CancellationException;
 
 /**
  * @author jaymie
@@ -66,7 +64,7 @@ public class SampleWebLogonNonce implements Runnable {
 
         LogManager.addListener(new DefaultLogListener());
 
-        new SampleLogonAuthentication(args[0], args[1]).run();
+        new SampleWebLogonNonce(args[0], args[1]).run();
         Thread.sleep(1000000L);
     }
 

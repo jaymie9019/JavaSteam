@@ -2,7 +2,6 @@ package `in`.dragonbra.javasteam.networking.steam3
 
 import `in`.dragonbra.javasteam.util.log.LogManager
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.ProxyBuilder
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.engine.type
 import io.ktor.client.plugins.websocket.WebSockets
